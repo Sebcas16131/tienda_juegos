@@ -1,0 +1,49 @@
+<?php require_once 'views/layout/header.php'; ?>
+<div class="container-principal-cart">
+    <h2 class="title-cart">Tu carrito</h2>
+
+<?php if (!empty($cart)) : ?>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+        <?php foreach ($cart as $item): ?>
+            <tr>
+                <td class="name-img-cart">
+                    <?php if ($item['image']): ?>
+                        <img src="public/uploads/<?= $item['image'] ?>" width="60">
+                    <?php endif; ?>
+                    <p><?= htmlspecialchars($item['name']) ?></p>
+                </td>
+                <td>$<?= $item['price'] ?></td>
+                <td><?= $item['quantity'] ?></td>
+                <td>$<?= number_format($item['price'] * $item['quantity'], 2) ?></td>
+                <td>
+                    <a href="cart.php?action=increase&id=<?= $item['id'] ?>"> + </a>
+                    <a href="cart.php?action=decrease&id=<?= $item['id'] ?>"> - </a>
+                    <a href="cart.php?action=remove&id=<?= $item['id'] ?>">🗑️</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+
+
+    <!-- Botón Finalizar compra -->
+    <br>
+    <a href="order.php" class="button-cart-shopping">
+        Finaliza tu compra
+    </a>
+    <a href="index.php" class="link-seguir-comprando">Seguir comprando</a>
+
+<?php else: ?>
+    <p>Tu carrito está vacío.</p>
+<?php endif; ?>
+
+<br><br>
+
+<?php require_once 'views/layout/footer.php'; ?>
