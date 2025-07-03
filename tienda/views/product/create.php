@@ -15,7 +15,7 @@
     <textarea name="description" class="input-login"></textarea><br><br>
 
     <label>Precio:</label><br>
-    <input type="number" name="price" step="0.01" required class="input-login"><br><br>
+    <input type="number" name="price" step="0.01" min="0" required class="input-login"><br><br>
 
     <label>Categoría:</label><br>
     <select name="category_id" required class="input-login">
