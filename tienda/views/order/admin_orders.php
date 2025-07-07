@@ -30,7 +30,11 @@
                 <li><?= $item['name'] ?> x<?= $item['quantity'] ?> - $<?= number_format($item['price'], 2) ?></li>
             <?php endforeach; ?>
         </ul>
-        <input type="submit" value="Borrar" class="delete-pedido">
+        <br>
+        <form action="admin_orders.php?action=delete" method="POST" >
+            <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+            <button type="submit" class="delete-pedido">Borrar</button>
+        </form>
     </div>
     <?php endforeach; ?>
     <a href="index.php">Volver al inicio</a>

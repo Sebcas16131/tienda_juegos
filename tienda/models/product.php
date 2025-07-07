@@ -85,6 +85,14 @@ public function delete($id) {
     return $stmt->execute([$id]);
 }
 
+public function increaseStock($product_id, $quantity) {
+    $sql = "UPDATE products SET stock = stock + ? WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$quantity, $product_id]);
+}
+
+
+
 }
 
 ?>

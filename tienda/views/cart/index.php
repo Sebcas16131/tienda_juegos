@@ -39,9 +39,14 @@
 
     <!-- Botón Finalizar compra -->
     <br>
-    <a href="order.php" class="button-cart-shopping">
-        Finaliza tu compra
-    </a>
+    <?php if (isset($_SESSION['user'])): ?>
+        <!-- Si está logueado -->
+        <a href="order.php" class="button-cart-shopping">Finaliza tu compra</a>
+    <?php else: ?>
+        <!-- Si NO está logueado -->
+        <a href="register.php" class="button-cart-shopping">Finaliza tu compra</a>
+    <?php endif; ?>
+
     <a href="index.php" class="link-seguir-comprando">Seguir comprando</a>
 
 <?php else: ?>

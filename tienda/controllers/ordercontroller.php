@@ -30,6 +30,7 @@ class OrderController {
 
         require 'views/order/create.php';
     }
+
     public function myOrders() {
     session_start();
     $user = $_SESSION['user'] ?? null;
@@ -46,9 +47,11 @@ class OrderController {
     foreach ($orders as &$order) {
         $order['items'] = $orderModel->getItems($order['id']);
     }
+    unset($order);
 
     require 'views/order/my_orders.php';
 }
+
 public function adminOrders() {
     session_start();
 
@@ -63,6 +66,7 @@ public function adminOrders() {
     foreach ($orders as &$order) {
         $order['items'] = $orderModel->getItems($order['id']);
     }
+    unset($order);
 
     require 'views/order/admin_orders.php';
 }
@@ -84,6 +88,33 @@ public function updateStatus() {
             $orderModel->updateStatus($order_id, $status);
         }
     }
+
+    header('Location: admin_orders.php');
+
+}
+
+public function delete($id) {
+    session_start();
+
+    // Solo admins pueden borrar pedidos (ajústalo si quieres permitirlo al usuario)
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+        header('Location: index.php');
+        exit;
+    }
+
+    $orderModel = new Order();
+    $orderItems = $orderModel->getItems($id); // Traer productos del pedido
+
+    // Recuperar stock por cada producto
+    require_once 'models/Product.php';
+    $productModel = new Product();
+
+    foreach ($orderItems as $item) {
+        $productModel->increaseStock($item['product_id'], $item['quantity']);
+    }
+
+    // Eliminar pedido
+    $orderModel->delete($id);
 
     header('Location: admin_orders.php');
 }

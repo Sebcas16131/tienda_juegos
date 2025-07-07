@@ -75,5 +75,16 @@ public function updateStatus($order_id, $status) {
     return $stmt->execute([$status, $order_id]);
 }
 
+public function delete($order_id) {
+    // Elimina los ítems primero por la relación
+    $sqlItems = "DELETE FROM order_items WHERE order_id = ?";
+    $stmtItems = $this->conn->prepare($sqlItems);
+    $stmtItems->execute([$order_id]);
+
+    // Luego elimina el pedido
+    $sqlOrder = "DELETE FROM orders WHERE id = ?";
+    $stmtOrder = $this->conn->prepare($sqlOrder);
+    $stmtOrder->execute([$order_id]);
+}
 
 }

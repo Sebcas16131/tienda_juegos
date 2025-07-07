@@ -247,3 +247,7 @@ COMMIT;
 -- Actualizacion de tablas
 ALTER TABLE `products`
 ADD COLUMN `stock` INT(11) NOT NULL DEFAULT 0 AFTER `category_id`;
+
+-- Valores de stock para productos existentes
+UPDATE products SET stock = 10 WHERE id = 1;
+UPDATE products SET stock = 5 WHERE id = 3;
