@@ -9,7 +9,7 @@
     <input type="text" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
 
     <label>Precio:</label>
-    <input type="number" name="price" value="<?= $product['price'] ?>" required>
+    <input type="number" name="price"  min="0" value="<?= $product['price'] ?>" required>
 
     <label>Descripción:</label>
     <textarea name="description" required><?= htmlspecialchars($product['description']) ?></textarea>
