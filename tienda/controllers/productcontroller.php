@@ -18,6 +18,7 @@ class ProductController {
             $description = $_POST['description'] ?? '';
             $price = $_POST['price'] ?? '';
             $category_id = $_POST['category_id'] ?? null;
+            $stock=$_POST['stock']?? 0;
 
             // Subir imagen
             $image = '';
@@ -29,9 +30,15 @@ class ProductController {
             }
 
             if ($name && $price && $category_id) {
-                $productModel->save($name, $description, $price, $image, $category_id);
-                header('Location: products.php');
-                exit;
+                if($stock>0){
+                    $productModel->save($name, $description, $price, $image, $category_id,$stock);
+                    header('Location: products.php');
+                    exit;
+                }
+                else{
+                    $error = "Stock Invalido";
+                }
+                
             } else {
                 $error = "Todos los campos son obligatorios.";
             }
@@ -63,6 +70,7 @@ public function update() {
         $price = $_POST['price'];
         $description = $_POST['description'];
         $category_id = $_POST['category_id'];
+        $stock=$_POST['stock']?? 0;
 
         $image = null;
 
@@ -73,9 +81,14 @@ public function update() {
         }
 
         $productModel = new Product();
-        $productModel->update($id, $name, $price, $description, $category_id, $image);
-
-        header('Location: products.php');
+        if($stock>0){
+                    $productModel->update($id, $name, $price, $description, $category_id, $image, $stock);
+                    header('Location: products.php');
+                    exit;
+                }
+                else{
+                    $error = "Stock Invalido";
+                }
         exit;
 
     }

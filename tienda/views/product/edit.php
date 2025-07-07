@@ -11,6 +11,9 @@
     <label>Precio:</label>
     <input type="number" name="price"  min="0" value="<?= $product['price'] ?>" required>
 
+    <label>Stock:</label>
+    <input type="number" name="stock" value="<?= $product['stock'] ?>" min="0" required>
+
     <label>Descripción:</label>
     <textarea name="description" required><?= htmlspecialchars($product['description']) ?></textarea>
 
@@ -18,7 +21,7 @@
     <select name="category_id" required>
         <?php
         require_once 'models/Category.php';
-        $categoryModel = new Category();
+        $categoryModel = new Category();    
         $categories = $categoryModel->getAll();
         foreach ($categories as $cat):
         ?>

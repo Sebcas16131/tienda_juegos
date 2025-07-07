@@ -10,24 +10,38 @@ class Order {
     }
 
     public function save($user_id, $address, $phone, $payment_method, $cart) {
+    try {
         $this->conn->beginTransaction();
 
+        // Insertar pedido principal
         $sql = "INSERT INTO orders (user_id, address, phone, payment_method) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$user_id, $address, $phone, $payment_method]);
 
         $order_id = $this->conn->lastInsertId();
 
+        // Insertar productos del carrito
         $sqlItem = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
         $stmtItem = $this->conn->prepare($sqlItem);
 
         foreach ($cart as $item) {
             $stmtItem->execute([$order_id, $item['id'], $item['quantity'], $item['price']]);
+
+            // Restar stock del producto
+            $sqlUpdateStock = "UPDATE products SET stock = stock - ? WHERE id = ?";
+            $stmtStock = $this->conn->prepare($sqlUpdateStock);
+            $stmtStock->execute([$item['quantity'], $item['id']]);
         }
 
         $this->conn->commit();
         return true;
+
+    } catch (Exception $e) {
+        $this->conn->rollBack();
+        return false;
     }
+}
+
     public function getByUser($user_id) {
     $sql = "SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC";
     $stmt = $this->conn->prepare($sql);

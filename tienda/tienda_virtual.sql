@@ -18,6 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+create database tienda_virtual;
+use tienda_virtual;
 -- Base de datos: `tienda_virtual`
 --
 
@@ -241,3 +243,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Actualizacion de tablas
+ALTER TABLE `products`
+ADD COLUMN `stock` INT(11) NOT NULL DEFAULT 0 AFTER `category_id`;

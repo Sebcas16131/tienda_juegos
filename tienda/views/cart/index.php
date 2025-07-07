@@ -1,6 +1,10 @@
 <?php require_once 'views/layout/header.php'; ?>
 <div class="container-principal-cart">
-    <h2 class="title-cart">Tu carrito</h2>
+    <h2 class="title-cart">Tu carrito</h2><br>
+
+    <?php if (!empty($_SESSION['error'])): ?>
+    <p style="color:red;"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
 
 <?php if (!empty($cart)) : ?>
     <table border="1" cellpadding="8">
@@ -41,7 +45,8 @@
     <a href="index.php" class="link-seguir-comprando">Seguir comprando</a>
 
 <?php else: ?>
-    <p>Tu carrito está vacío.</p>
+    <p>Tu carrito está vacío.</p><br><br>
+    <a href="index.php" class="link-seguir-comprando">Compra</a>
 <?php endif; ?>
 
 <br><br>

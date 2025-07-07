@@ -11,7 +11,8 @@
         <h2><?= htmlspecialchars($product['name']) ?></h2>
         <p> <?= htmlspecialchars($product['category_name']) ?></p><br>
         <p><strong>Descripción:</strong> <?= nl2br(htmlspecialchars($product['description'])) ?></p><br>
-        <p><strong>Precio:</strong> $<?= number_format($product['price'], 2) ?></p>
+        <p><strong>Precio:</strong> $<?= number_format($product['price'], 2) ?></p><br>
+        <p><strong>Stock disponible:</strong> <?= $product['stock'] ?></p>
         <br><br>
         <div class="container-buttons-product">
             <a href="cart.php?action=add&id=<?= $product['id'] ?>" class="button-cart-product">Agregar al carrito</a>

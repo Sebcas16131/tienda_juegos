@@ -7,6 +7,7 @@
     <tr>
         <th>Nombre</th>
         <th>Precio</th>
+        <th>Stock</th>
         <th>Categoría</th>
         <th>Imagen</th>
     </tr>
@@ -14,6 +15,7 @@
         <tr>
             <td><?= htmlspecialchars($prod['name']) ?></td>
             <td>$<?= $prod['price'] ?></td>
+            <td><?= $prod['stock'] ?></td>  
             <td><?= $prod['category_name'] ?? 'Sin categoría' ?></td>
             <td>
                 <?php if (!empty($prod['image'])): ?>

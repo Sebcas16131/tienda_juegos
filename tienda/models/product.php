@@ -18,11 +18,11 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function save($name, $description, $price, $image, $category_id) {
-        $sql = "INSERT INTO products (name, description, price, image, category_id)
-                VALUES (?, ?, ?, ?, ?)";
+    public function save($name, $description, $price, $image, $category_id,$stock) {
+        $sql = "INSERT INTO products (name, description, price, image, category_id,stock)
+                VALUES (?, ?, ?, ?, ?,?)";
         $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([$name, $description, $price, $image, $category_id]);
+        return $stmt->execute([$name, $description, $price, $image, $category_id,$stock]);
     }
 
     public function getCategories() {
@@ -67,13 +67,13 @@ public function search($name, $category_id = null) {
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-public function update($id, $name, $price, $description, $category_id, $image = null) {
+public function update($id, $name, $price, $description, $category_id, $image = null,$stock) {
     if ($image) {
-        $sql = "UPDATE products SET name = ?, price = ?, description = ?, category_id = ?, image = ? WHERE id = ?";
-        $params = [$name, $price, $description, $category_id, $image, $id];
+        $sql = "UPDATE products SET name = ?, price = ?, description = ?, category_id = ?, image = ?, stock=? WHERE id = ?";
+        $params = [$name, $price, $description, $category_id, $image,$stock,$id];
     } else {
-        $sql = "UPDATE products SET name = ?, price = ?, description = ?, category_id = ? WHERE id = ?";
-        $params = [$name, $price, $description, $category_id, $id];
+        $sql = "UPDATE products SET name = ?, price = ?, description = ?, category_id = ?, stock=? WHERE id = ?";
+        $params = [$name, $price, $description, $category_id,$stock, $id];
     }
 
     $stmt = $this->conn->prepare($sql);

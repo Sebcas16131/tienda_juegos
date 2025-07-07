@@ -17,6 +17,9 @@
     <label>Precio:</label><br>
     <input type="number" name="price" step="0.01" min="0" required class="input-login"><br><br>
 
+    <label>Stock:</label><br>
+    <input type="number" name="stock" min="0" required class="input-login"><br><br>
+
     <label>Categoría:</label><br>
     <select name="category_id" required class="input-login">
         <option value="">Seleccionar</option>
