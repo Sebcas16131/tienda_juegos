@@ -7,7 +7,7 @@
     <p style="color:red;"><?= $error ?></p>
     <?php endif; ?>
 
-    <form method="POST" enctype="multipart/form-data" class="form-envios">
+    <form method="POST" enctype="multipart/form-data" >
     <label>Nombre:</label><br>
     <input type="text" name="name" required class="input-login"><br><br>
 

@@ -22,7 +22,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <nav>
         <ul>
             <li><a href="index.php">TIENDA</a></li>
-            <li><a href="#">AYUDA</a></li>
+            <li><a href="cart.php" class="boton-carrito">MI CARRITO</a></li>
             
             
 
@@ -41,7 +41,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
                 <li><a href="my_orders.php">MIS PEDIDOS</a></li>
                 <li><a href="logout.php">CERRAR SESION</a></li>
-                <li><a href="cart.php" class="boton-carrito">🛒 Mi carrito</a></li>
             <?php else: ?>
 
 

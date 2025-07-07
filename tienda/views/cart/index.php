@@ -3,7 +3,7 @@
     <h2 class="title-cart">Tu carrito</h2><br>
 
     <?php if (!empty($_SESSION['error'])): ?>
-    <p style="color:red;"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <p class="mensaje-error" style="color:red;"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
     <?php endif; ?>
 
 <?php if (!empty($cart)) : ?>
@@ -45,8 +45,8 @@
     <a href="index.php" class="link-seguir-comprando">Seguir comprando</a>
 
 <?php else: ?>
-    <p>Tu carrito está vacío.</p><br><br>
-    <a href="index.php" class="link-seguir-comprando">Compra</a>
+    <p class="mensaje-carrito-vacio">Tu carrito está vacío.</p><br><br>
+    <a href="index.php" class="link-volver-comprando">Compra</a><br><br><br><br><br><br><br><br><br><br>
 <?php endif; ?>
 
 <br><br>

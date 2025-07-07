@@ -310,6 +310,52 @@ nav a:hover::before{
     color: white;
     border-radius: 5px;
 }
+.input-img{
+    width: 400px;
+    color: white;
+    border-radius: 5px;
+}
+.button-product{
+    padding: 6px;
+    width: 170px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.button-product:hover{
+    background-color: rgb(167, 2, 2);
+    cursor: pointer;
+}
+.input-description{
+    padding: 6px;
+    width: 400px;
+    height: 100px;
+    background-color: #222222;
+    color: white;
+    border-radius: 5px;
+}
+.form-envios{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.select-category{
+    width: 400px;
+    background-color: #222222;
+    color: #898989;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 6px;
+}
+.option-category{
+    width: 400px;
+    background-color: #222222;
+    color: #898989;
+    font-weight: 500;
+    border-radius:5px;
+    padding: 6px;
+}
 .button-login{
     padding: 6px;
     width: 120px;
@@ -328,6 +374,71 @@ nav a:hover::before{
 }
 .container-login p:hover{
     color: #BBBBBB;
+}
+.mensaje-carrito-vacio{
+    margin-left: 100px;
+    color: #BBBBBB;
+}
+.mensaje-error{
+    margin-left: 100px;
+    font-size: 20px;
+}
+.delete-pedido{
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    margin-top: 30px;
+    background-color: red;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.delete-pedido:hover{
+    background-color: rgb(167, 2, 2);
+    cursor: pointer;
+}
+.delete-pedido::before{
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: red;
+    transition: all .5s;
+}
+.delete-pedido:hover::before{
+    width: 100%;
+}
+.link-volver-comprando{
+    color: #898989;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0 30px;
+    position: relative;
+    margin-left: 100px;
+}
+
+.link-volver-comprando:hover{
+    color: white;
+}
+.link-volver-comprando::before{
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: red;
+    transition: all .5s;
+}
+.link-volver-comprando:hover::before{
+    width: 100%;
 }
 /*BUTTONS CONFIRMAR PEDIDO*/
 .button-pedido{

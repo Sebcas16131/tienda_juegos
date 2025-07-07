@@ -20,6 +20,7 @@
                     <li><?= $item['name'] ?> x<?= $item['quantity'] ?> - $<?= number_format($item['price'], 2) ?></li>
                 <?php endforeach; ?>
             </ul>
+            <input type="submit" value="Borrar" class="delete-pedido">
         </div>
     <?php endforeach; ?>
     <?php else: ?>
